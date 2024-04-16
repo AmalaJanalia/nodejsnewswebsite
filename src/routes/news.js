@@ -1,14 +1,13 @@
 const express= require('express');
-
-
+require('dotenv').config();
 const newsRouter=express.Router();
 const axios =require('axios');
-
+const apiKey=process.env.API_KEY;
 newsRouter.get('',async(req,res)=>{
     //
     try{
      
-        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=tesla&from=2024-03-15&sortBy=publishedAt&apiKey=3bcdada942024b08b21e2fb561384aa2`)
+        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=tesla&from=2024-03-15&sortBy=publishedAt&apiKey=${apiKey}`)
         const articles = newsAPI.data.articles; 
     
         res.render('news',{articles})
